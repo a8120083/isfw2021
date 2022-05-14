@@ -10,6 +10,14 @@
     <script type="text/javascript" src="../osql.js"></script>
 
     <script>
+        $().ready(function (){
+            welcome();
+        });
+
+        function welcome(){
+            var name = sessionStorage.removeItem('name');
+            document.getElementById('welcome').innerHTML = 'ようこそ' + name + 'さん！';
+        }
     </script>
 
 </head>
