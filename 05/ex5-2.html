@@ -12,10 +12,14 @@
     <script>
         function button1Pressed() {
             doInsert();
-            doTable();
+            
             document.getElementById('tf1').value = '';
             document.getElementById('tf2').value = '';
         }
+
+        $().ready(function () {
+            setInterval(doTable, 2000);
+        });
 
         async function doInsert() {
             var userid = document.getElementById('tf1').value;
