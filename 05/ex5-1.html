@@ -15,7 +15,8 @@
         }
 
         async function doSelect() {
-            var sql = 'select * from Tweets order by time desc limit 20';
+            var search_tweet = document.getElementById('search').value;
+            var sql = `select * from Tweets Where tweet like '%${search_tweet}%';`;
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
@@ -33,6 +34,7 @@
 
 <body>
     <h1>Tweets</h1>
+    <input id="search">
     <button onclick="button1Pressed()">X</button>
     <hr>
     <p id="result">xxxx</p>
