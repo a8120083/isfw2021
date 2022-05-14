@@ -12,6 +12,8 @@
     <script>
         function button1Pressed() {
             doInsert();
+            document.getElementById('tf1').value = '';
+            document.getElementById('tf2').value = '';
         }
 
         async function doInsert() {
