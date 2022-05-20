@@ -26,6 +26,7 @@
                 html = html + '<td>' + object.id + '</td>';
                 html = html + '<td>' + object.name + '</td>';
                 html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
+                html = html + '<td>' + '<button id="deletebutton" type="button" value=' + object.id + ' onclick="buttonDelPressed()">消去</button>' + '</td>';
                 html = html + '</tr>';
             }
             html = html + '</table>';
@@ -33,15 +34,17 @@
         }
 
         async function execDelete() {
-            var target = document.getElementById('delete').value;
-            var sql = `delete from Users where id = "${target}"`;
-            await osql.connect(sql);
+            
+            // var sql = `delete from Users where id = "${target}"`;
+            // await osql.connect(sql);
+            
         }
 
         function buttonDelPressed() {
-            execDelete();
-            execSelect();
-            document.getElementById('delete').value = '';
+            var target = document.getElementById('deletebutton').value;
+            console.log(target);
+            // execDelete();
+            // execSelect();
         }
     </script>
 
@@ -50,8 +53,8 @@
 <body>
     <h1>Users</h1>
     <hr>
-    <p>ID: <input id="delete"><button onclick="buttonDelPressed()">消去</button></p>
-    <hr>
+    <!-- <p>ID: <input id="delete"><button onclick="buttonDelPressed()">消去</button></p>
+    <hr> -->
     <p id="result">xxxx</p>
 </body>
 
