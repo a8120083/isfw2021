@@ -15,8 +15,8 @@
         });
 
         function welcome(){
-            var name = sessionStorage.removeItem('name');
-            document.getElementById('welcome').innerHTML = 'ようこそ' + name + 'さん！';
+            var name = sessionStorage.getItem('username');
+            document.getElementById('welcome').innerHTML = 'ようこそ! ' + name + 'さん！';
         }
     </script>
 
