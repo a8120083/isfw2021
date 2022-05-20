@@ -31,12 +31,27 @@
             html = html + '</table>';
             document.getElementById('result').innerHTML = html;
         }
+
+        async function execDelete() {
+            var target = document.getElementById('delete').value;
+            var sql = `delete from Users where id = "${target}"`;
+            await osql.connect(sql);
+        }
+
+        function buttonDelPressed() {
+            execDelete();
+            execSelect();
+            document.getElementById('delete').value = '';
+        }
     </script>
 
 </head>
 
 <body>
     <h1>Users</h1>
+    <hr>
+    <p>ID: <input id="delete"><button onclick="buttonDelPressed()">消去</button></p>
+    <hr>
     <p id="result">xxxx</p>
 </body>
 
