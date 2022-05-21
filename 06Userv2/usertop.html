@@ -15,6 +15,7 @@
         });
 
         var name = sessionStorage.getItem('username');
+        var userid = sessionStorage.getItem('userid');
 
         function welcome(){
             document.getElementById('welcome').innerHTML = 'ようこそ! ' + name + 'さん！';
@@ -23,6 +24,10 @@
         function letstweet(){
             location.href = `tweet.html?username=${name}`
         }
+
+        function letsfollow(){
+            location.href = `follow.html?userid=${userid}`
+        }
     </script>
 
 </head>
@@ -30,10 +35,9 @@
 <body>
     <h1>ユーザトップ</h1>
     <p id="welcome">ようこそxxさん</p>
-    <p>名前、パスワードの変更は下のリンクから<br><a href="update.html?userid=dosan">下</a></p>
+    <p>名前、パスワードの変更は下のリンクから<br><a href="update.html?userid=dosan">下</a></p><hr>
     <p>さあ、早速ツイートしてみましょう！<br><button onclick="letstweet()">Let's go</button></p>
-    <hr>
-    <h2>ツイート</h2>
+    <p>ユーザーをフォローしてみましょう！<br><button onclick="letsfollow()">Let's go</button></p>
 
 </body>
 
