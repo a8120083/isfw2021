@@ -10,23 +10,27 @@
     <script type="text/javascript" src="../osql.js"></script>
 
     <script>
+        var userid = sessionStorage.getItem('userid');
+
         $(document).ready(function () {
             execSelect();
             execFollower();
         });
 
         async function execFollower(){
-            var sql = 'select * from Follows';
+            var sql = 'select distinct * from Follows';
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
             html = html + '<table border="1">';
             for (var i = 0; i < objects.length; i++) {
-                html = html + '<tr>';
                 var object = objects[i];
-                html = html + '<td>' + object.fromid + '</td>';
-                html = html + '<td>' + object.toid + '</td>';
-                html = html + '</tr>';
+                if(object.fromid == userid || object.toid == userid){    
+                    html = html + '<tr>';
+                    html = html + '<td>' + object.fromid + '</td>';
+                    html = html + '<td>' + object.toid + '</td>';
+                    html = html + '</tr>';
+                }
             }
             html = html + '</table>';
             document.getElementById('follower').innerHTML = html;
@@ -56,6 +60,10 @@
             await osql.connect(sql);
         }
 
+        // async function execOnly(){
+        //     var sql = `; `;
+        // }
+
         function buttonFolPressed(target) {
             var ans = window.confirm(`本当に ${target} をフォローしますか？`);
             if(ans == true){
@@ -63,7 +71,7 @@
                 execFollow(target);
             }
             execSelect();
-            execFollower()
+            execFollower();
             
         }
     </script>
@@ -73,6 +81,7 @@
 <body>
     <h1>Users</h1>
     <hr>
+    <p>Followed:Following</p>
     <p id="follower">----</p>
     <hr>
     <!-- <p>ID: <input id="delete"><button onclick="buttonDelPressed()">消去</button></p>
